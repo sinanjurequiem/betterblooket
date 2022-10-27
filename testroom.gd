@@ -7,8 +7,8 @@ onready var Map = $TileMap
 
 var tile_size = 32  # size of a tile in the TileMap
 var num_rooms = 50  # number of rooms to generate
-var min_size = 4  # minimum room size (in tiles)
-var max_size = 10  # maximum room size (in tiles)
+var min_size = 6  # minimum room size (in tiles)
+var max_size = 20  # maximum room size (in tiles)
 
 var hspread = 400 #horizontal spread
 var vspread = 400 #vertical spread
