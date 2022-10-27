@@ -1,6 +1,8 @@
 extends Node2D
 
 var Room = preload("res://room.tscn")
+var Player = preload("res://Player.tscn")
+var player = null
 onready var Map = $TileMap
 
 var tile_size = 32  # size of a tile in the TileMap
@@ -13,11 +15,17 @@ var vspread = 400 #vertical spread
 
 var cull = 0.5 # chance to oof room
 
+var play_mode = false
+
 var path # path data
+
+var start_room
+var end_room
 
 func _ready():
 	randomize()
 	make_rooms()
+
 
 func make_rooms():
 	for i in range(num_rooms):
@@ -41,17 +49,8 @@ func make_rooms():
 	yield(get_tree(),"idle_frame")
 	
 	path = find_mst(room_positions)
-
-func _draw():
-	for room in $Rooms.get_children():
-		draw_rect(Rect2(room.position - room.size, room.size*2), Color(32, 228, 0), false)
 	
-	if path:
-		for p in path.get_points():
-			for c in path.get_point_connections(p):
-				var pp = path.get_point_position(p) #comedic
-				var cp = path.get_point_position(c) #not so comedic
-				draw_line(Vector2(pp.x,pp.y), Vector2(cp.x,cp.y), Color(1,1,0,1),15,true)
+	make_map()
 
 func _process(delta):
 	update()
@@ -62,8 +61,16 @@ func _input(event):
 		for n in $Rooms.get_children():
 			n.queue_free()
 		make_rooms()
-		yield(get_tree().create_timer(0.55), "timeout")
-		make_map()
+	if event.is_action_pressed('ui_cancel'):
+		#erase rigidbodies
+		for room in $Rooms.get_children():
+			room.queue_free()
+		
+		player = Player.instance()
+		add_child(player)
+		player.position = start_room.position
+		play_mode = true
+
 
 func find_mst(nodes):
 	# Prim's algorithm
@@ -102,6 +109,9 @@ func find_mst(nodes):
 	# credit goes to kidscancode
 
 func make_map():
+	find_start_room()
+	find_end_room()
+	
 	Map.clear()
 	
 	var full_rect = Rect2()
@@ -112,7 +122,7 @@ func make_map():
 	var bottomright = Map.world_to_map(full_rect.end)
 	for x in range(topleft.x, bottomright.x):
 		for y in range(topleft.y,bottomright.y):
-			Map.set_cell(x,y,1)
+			Map.set_cell(x,y,2)
 	
 	var corridors = []
 	for room in $Rooms.get_children():
@@ -121,7 +131,7 @@ func make_map():
 		var ul = (room.position/tile_size).floor()-s
 		for x in range(2,s.x*2-1):
 			for y in range(2, s.y*2-1):
-				Map.set_cell(ul.x+x, ul.y+y, 0)
+				Map.set_cell(ul.x+x, ul.y+y, 1)
 	
 		var p = path.get_closest_point(Vector3(room.position.x, room.position.y,0))
 		for conn in path.get_point_connections(p):
@@ -145,13 +155,27 @@ func carve_path(pos1, pos2):
 		x_y = pos2
 		y_x = pos1
 	for x in range(pos1.x, pos2.x, x_diff):
-		Map.set_cell(x, x_y.y, 0)
-		Map.set_cell(x, x_y.y+y_diff, 0)  # widen the corridor
+		Map.set_cell(x, x_y.y, 1)
+		Map.set_cell(x, x_y.y+y_diff, 1)  # widen the corridor
 	for y in range(pos1.y, pos2.y, y_diff):
-		Map.set_cell(y_x.x, y, 0)
-		Map.set_cell(y_x.x+x_diff, y, 0)  # widen the corridor
+		Map.set_cell(y_x.x, y, 1)
+		Map.set_cell(y_x.x+x_diff, y, 1)  # widen the corridor
+	
 
 
+func find_start_room():
+	var min_x = INF
+	for room in $Rooms.get_children():
+		if room.position.x < min_x:
+			start_room = room
+			min_x = room.position.x
+
+func find_end_room():
+	var max_x = -INF
+	for room in $Rooms.get_children():
+		if room.position.x > max_x:
+			end_room = room
+			max_x = room.position.x
 
 
 
