@@ -36,7 +36,7 @@ func make_rooms():
 		r.make_room(pos,Vector2(w,h)*tile_size)
 		$Rooms.add_child(r)
 	
-	yield(get_tree().create_timer(0.5),"timeout")
+	yield(get_tree().create_timer(1.1),"timeout")
 	
 	var room_positions = []
 	for room in $Rooms.get_children():
