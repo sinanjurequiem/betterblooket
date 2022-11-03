@@ -6,6 +6,7 @@ var previous_state
 var states = {}
 
 onready var parent = get_parent()
+onready var animation_player: AnimationPlayer = parent.get_node("AnimationPlayer")
 
 func _physics_process(delta):
 	if state != null:
