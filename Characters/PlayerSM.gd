@@ -7,8 +7,6 @@ func _ready():
 	call_deferred("set_state", states.sleep)
 
 
-
-
 func _state_logic(delta):
 	pass
 

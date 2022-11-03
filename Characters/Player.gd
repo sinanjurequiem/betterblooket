@@ -1,20 +1,13 @@
-extends KinematicBody2D
+extends Character
 
-class_name Character, "res://Textures (placeholder)/heroes/knight/knight_idle_anim_f0.png"
 
-const friction = 0.15
-export var acceleration:= 40
-export var max_speed:= 100
-
-var direction := Vector2.ZERO
-var velocity := Vector2.ZERO
-
-func _physics_process(_delta: float) -> void:
-	velocity = move_and_slide(velocity)
-	velocity = lerp(velocity, Vector2.ZERO, friction)
-
-func move() -> void:
-	direction = direction.normalized()
-	velocity += direction * acceleration
-	velocity = velocity.clamped(max_speed)
+func _process(delta):
+	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	
+	if mouse_direction.x > 0 and animated_sprite.flip_h:
+		animated_sprite.flip_h = false
+	elif mouse_direction.x < 0 and not animated_sprite.flip_h:
+		animated_sprite.flip_h = true
+
+func get_input():
+	pass
