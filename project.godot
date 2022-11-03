@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Character",
 "language": "GDScript",
 "path": "res://Characters/Player.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Helper Scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
-"Character": "res://Textures (placeholder)/heroes/knight/knight_idle_anim_f0.png"
+"Character": "res://Textures (placeholder)/heroes/knight/knight_idle_anim_f0.png",
+"StateMachine": ""
 }
 
 [application]
