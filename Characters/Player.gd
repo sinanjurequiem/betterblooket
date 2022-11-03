@@ -1,16 +1,20 @@
 extends KinematicBody2D
 
 class_name Character, "res://Textures (placeholder)/heroes/knight/knight_idle_anim_f0.png"
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
+const friction = 0.15
+export var acceleration:= 40
+export var max_speed:= 100
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var direction := Vector2.ZERO
+var velocity := Vector2.ZERO
 
+func _physics_process(_delta: float) -> void:
+	velocity = move_and_slide(velocity)
+	velocity = lerp(velocity, Vector2.ZERO, friction)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func move() -> void:
+	direction = direction.normalized()
+	velocity += direction * acceleration
+	velocity = velocity.clamped(max_speed)
+	
