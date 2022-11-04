@@ -177,6 +177,8 @@ anims/run = SubResource( 3 )
 [node name="StateMachine" parent="." index="3"]
 script = ExtResource( 5 )
 
-[node name="Weapon" type="Node2D" parent="." index="4"]
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
+current = true
+smoothing_enabled = true
 
-[node name="Sword" parent="Weapon" index="0" instance=ExtResource( 6 )]
+[node name="Weapon" parent="." index="5" instance=ExtResource( 6 )]

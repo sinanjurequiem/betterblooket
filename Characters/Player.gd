@@ -2,7 +2,7 @@ extends Character
 
 onready var animated_sprite = $"AnimatedSprite"
 onready var weapon = $"Weapon"
-onready var weapon_animation_player = $"Weapon/Sword/AnimationPlayer" #fix this later to work with other weapons
+onready var weapon_animation_player = weapon.get_node("AnimationPlayer") #fix this later to work with other weapons
 
 signal main_attack
 
@@ -33,8 +33,7 @@ func get_input():
 	if Input.is_action_pressed("ui_left"):
 		direction+= Vector2.LEFT
 	if Input.is_action_pressed("ui_attack_main"):
-		emit_signal("main_attack")
+		#emit_signal("main_attack")
+		weapon_animation_player.play("slashdown")
 
 
-func _on_Weapon_attack():
-	pass # Replace with function body.

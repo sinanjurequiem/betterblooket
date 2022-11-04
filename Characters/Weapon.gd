@@ -2,8 +2,9 @@ extends Node2D
 
 #idk what to put here
 
+signal attack
 
 
 
 func _on_Player_main_attack():
-	pass # Replace with function body.
+	emit_signal("attack")
