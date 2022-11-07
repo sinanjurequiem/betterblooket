@@ -3,6 +3,8 @@ class_name Enemy, "res://Textures (placeholder)/enemies/slime/slime_idle_anim_f0
 
 var path: PoolVector2Array
 
+export var speed := 1
+
 onready var animated_sprite := $"AnimatedSprite"
 onready var navigation: Navigation2D = get_tree().current_scene.get_node("Navigation2D")
 onready var player: KinematicBody2D = get_tree().current_scene.get_node("Player")
@@ -12,7 +14,7 @@ func chase() -> void:
 		var vector_to_next_point := path[0] - global_position
 		var distance_to_next_point := vector_to_next_point.length()
 		
-		if distance_to_next_point < 0.8:
+		if distance_to_next_point < speed:
 			path.remove(0)
 			if not path:
 				return
@@ -26,4 +28,6 @@ func chase() -> void:
 
 func _on_PathTimer_timeout() -> void:
 	path = navigation.get_simple_path(global_position, player.position)
-	
+
+
+
