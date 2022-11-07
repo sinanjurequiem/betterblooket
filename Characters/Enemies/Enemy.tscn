@@ -80,3 +80,6 @@ anims/RESET = SubResource( 8 )
 anims/idle = SubResource( 9 )
 
 [node name="PathTimer" type="Timer" parent="." index="4"]
+wait_time = 0.5
+
+[connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]
