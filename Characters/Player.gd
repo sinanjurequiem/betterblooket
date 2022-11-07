@@ -4,6 +4,8 @@ onready var animated_sprite = $"AnimatedSprite"
 onready var weapon = $"Weapon"
 onready var weapon_animation_player = weapon.get_node("AnimationPlayer") #fix this later to work with other weapons
 
+var weapon_up:bool = true #placeholder
+
 signal main_attack
 
 func _process(delta):
@@ -32,8 +34,13 @@ func get_input():
 		direction+= Vector2.RIGHT
 	if Input.is_action_pressed("ui_left"):
 		direction+= Vector2.LEFT
-	if Input.is_action_pressed("ui_attack_main"):
+	if Input.is_action_just_pressed("ui_attack_main"):
 		#emit_signal("main_attack")
-		weapon_animation_player.play("slashdown")
+		if weapon_up:
+			weapon_animation_player.play("slashdown")
+			weapon_up = false
+		elif not weapon_up:
+			weapon_animation_player.play("slashup")
+			weapon_up = true
 
 
