@@ -34,13 +34,15 @@ func get_input():
 		direction+= Vector2.RIGHT
 	if Input.is_action_pressed("ui_left"):
 		direction+= Vector2.LEFT
-	if Input.is_action_just_pressed("ui_attack_main"):
+	if Input.is_action_pressed("ui_attack_main") and not weapon_animation_player.is_playing():
 		#emit_signal("main_attack")
 		if weapon_up:
 			weapon_animation_player.play("slashdown")
 			weapon_up = false
+			print("slashdown")
 		elif not weapon_up:
 			weapon_animation_player.play("slashup")
 			weapon_up = true
+			print("slashup")
 
 
