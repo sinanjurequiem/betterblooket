@@ -1,7 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Textures/Weapons/BaseSword.png" type="Texture" id=1]
-[ext_resource path="res://Helper Scripts/StateMachine.gd" type="Script" id=2]
 [ext_resource path="res://Textures (placeholder)/effects (new)/slash_effect_anim_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Weapons/Melee/default_slash.gd" type="Script" id=4]
 
@@ -206,6 +205,42 @@ tracks/3/keys = {
 "values": [ 0, 1, 2 ]
 }
 
+[sub_resource type="GDScript" id=8]
+script/source = "extends StateMachine
+
+func _init() -> void:
+	pass
+	_ad_state(\"run\")
+
+func _ready():
+	set_state(states.idle)
+
+
+func _state_logic(delta):
+	parent.get_input()
+	parent.move()
+
+func _get_transition(delta):
+	match state:
+		states.idle:
+			if parent.velocity.length() > 10:
+				return states.run
+		states.run:
+			if parent.velocity.length() < 10:
+				return states.idle
+
+func _enter_state(new_state, old_state):
+	match new_state:
+		states.idle:
+			animation_player.play(\"idle\")
+		states.run:
+			animation_player.play(\"run\")
+
+func _exit_state(old_state, new_state):
+	pass
+
+"
+
 [node name="Weapon" type="Node2D" groups=["Melee", "Weapon"]]
 script = ExtResource( 4 )
 
@@ -229,4 +264,4 @@ anims/slashdown = SubResource( 2 )
 anims/slashup = SubResource( 7 )
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 2 )
+script = SubResource( 8 )

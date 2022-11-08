@@ -8,3 +8,4 @@ export var damagetype:= "default" # can be set to default, fire, poison, ice, el
 
 onready var effect = $"Effect"
 onready var animation_player = $"AnimationPlayer"
+

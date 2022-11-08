@@ -3,6 +3,10 @@ class_name Weapon
 
 #idk what to put here
 
+export var damage: int = 1
+export var knockback : int = 300
+var knockback_direction : Vector2 = Vector2.ZERO
+
 signal attack
 
 func _on_Player_main_attack():
