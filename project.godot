@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Weapon",
+"class": "Bow",
+"language": "GDScript",
+"path": "res://Weapons/default_bow.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
@@ -19,15 +24,46 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Characters/Enemies/Enemy.gd"
 }, {
+"base": "Weapon",
+"class": "Firearm",
+"language": "GDScript",
+"path": "res://Weapons/default_firearm.gd"
+}, {
+"base": "Weapon",
+"class": "SlashingWeapon",
+"language": "GDScript",
+"path": "res://Weapons/default_slash.gd"
+}, {
+"base": "Weapon",
+"class": "StabbingWeapon",
+"language": "GDScript",
+"path": "res://Weapons/default_stab.gd"
+}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Helper Scripts/StateMachine.gd"
+}, {
+"base": "Weapon",
+"class": "ThrowingWeapon",
+"language": "GDScript",
+"path": "res://Weapons/default_throwing.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://Characters/Weapon.gd"
 } ]
 _global_script_class_icons={
+"Bow": "",
 "Character": "res://Textures (placeholder)/heroes/knight/knight_idle_anim_f0.png",
 "Enemy": "res://Textures (placeholder)/enemies/slime/slime_idle_anim_f0.png",
-"StateMachine": ""
+"Firearm": "",
+"SlashingWeapon": "",
+"StabbingWeapon": "",
+"StateMachine": "",
+"ThrowingWeapon": "",
+"Weapon": ""
 }
 
 [application]
