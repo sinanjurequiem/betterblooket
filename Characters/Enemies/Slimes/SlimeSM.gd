@@ -20,6 +20,9 @@ func _state_logic(_delta: float) -> void:
 		animation_player.play("alert")
 		yield(get_tree().create_timer(0.25), "timeout")
 		set_state(states.chase)
+	elif state == states.idle:
+		if not animation_player.is_playing():
+			animation_player.play("idle")
 
 func _get_transition(delta):
 	return null

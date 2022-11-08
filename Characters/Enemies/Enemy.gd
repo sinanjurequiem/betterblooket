@@ -27,7 +27,7 @@ func chase() -> void:
 			animated_sprite.flip_h = true
 
 func _on_PathTimer_timeout() -> void:
-	path = navigation.get_simple_path(global_position, player.position)
+	path = navigation.get_simple_path(global_position, player.position) #deprecated soon
 
 
 
