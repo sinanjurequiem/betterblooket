@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Helper Scripts/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Weapons/Melee/Swords/Sword.gd" type="Script" id=2]
 [ext_resource path="res://Textures (placeholder)/effects (new)/slash_effect_anim_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Textures/Weapons/BaseSword.png" type="Texture" id=4]
+[ext_resource path="res://Helper Scripts/hitbox.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=8]
 radius = 2.23027
@@ -260,6 +261,7 @@ offset = Vector2( 6, -5 )
 [node name="Hitbox" type="Area2D" parent="Pivot Point/Sprite"]
 position = Vector2( -15.4537, 2.72712 )
 collision_mask = 4
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot Point/Sprite/Hitbox"]
 position = Vector2( 23.2318, -9.09108 )

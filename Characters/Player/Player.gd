@@ -2,10 +2,12 @@ extends Character
 
 onready var animated_sprite = $"AnimatedSprite"
 onready var weapon = $"Weapon"
-onready var weapon_hitbox = $"Weapon/Pivot Point/Sword/Hitbox"
+onready var weapon_hitbox = $"Weapon/Pivot Point/Sprite/Hitbox"
 onready var weapon_animation_player = weapon.get_node("AnimationPlayer") #fix this later to work with other weapons
 
 var weapon_up:bool = true #placeholder
+
+
 
 signal main_attack
 
@@ -18,7 +20,7 @@ func _process(delta):
 		animated_sprite.flip_h = true
 	
 	if not weapon_animation_player.is_playing():
-		#weapon_hitbox.knockback_direction = mouse_direction
+		weapon_hitbox.knockback_direction = mouse_direction
 		weapon.rotation = mouse_direction.angle()
 		if weapon.scale.y == 1 and mouse_direction.x < 0:
 			weapon.scale.y = -1
