@@ -151,3 +151,4 @@ position = Vector2( 0, -14 )
 texture = ExtResource( 5 )
 
 [connection signal="body_entered" from="PlayerDetection" to="StateMachine" method="_on_PlayerDetected"]
+[connection signal="body_exited" from="PlayerDetection" to="StateMachine" method="_on_PlayerDetection_body_exited"]

@@ -41,3 +41,9 @@ func _on_PlayerDetected(body):
 		set_state(states.alert)
 
 
+
+
+
+func _on_PlayerDetection_body_exited(body):
+	if body.name == "Player" and state == states.chase:
+		set_state(states.idle)

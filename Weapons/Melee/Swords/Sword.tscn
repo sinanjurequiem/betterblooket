@@ -1,9 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Helper Scripts/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Weapons/Melee/Swords/Sword.gd" type="Script" id=2]
 [ext_resource path="res://Textures (placeholder)/effects (new)/slash_effect_anim_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Textures/Weapons/BaseSword.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 2.23027
+height = 11.5394
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
@@ -40,7 +44,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot Point/Sword:rotation_degrees")
+tracks/1/path = NodePath("Pivot Point/Sprite:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -99,13 +103,25 @@ tracks/5/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Pivot Point/Sprite/Hitbox/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "slashdown"
 length = 0.3
 step = 0.025
 tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot Point/Sword:rotation_degrees")
+tracks/0/path = NodePath("Pivot Point/Sprite:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -152,6 +168,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ false, true, false ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot Point/Sprite/Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "slashup"
@@ -170,7 +198,7 @@ tracks/0/keys = {
 "values": [ 80.0, 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot Point/Sword:rotation_degrees")
+tracks/1/path = NodePath("Pivot Point/Sprite:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -205,17 +233,38 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 0, 1, 2 ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot Point/Sprite/Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="Weapon" type="Node2D" groups=["Melee", "Weapon"]]
 script = ExtResource( 2 )
 
 [node name="Pivot Point" type="Node2D" parent="."]
 
-[node name="Sword" type="Sprite" parent="Pivot Point"]
+[node name="Sprite" type="Sprite" parent="Pivot Point"]
 position = Vector2( 7, -10 )
 rotation = -2.35619
 texture = ExtResource( 4 )
 offset = Vector2( 6, -5 )
+
+[node name="Hitbox" type="Area2D" parent="Pivot Point/Sprite"]
+position = Vector2( -15.4537, 2.72712 )
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot Point/Sprite/Hitbox"]
+position = Vector2( 23.2318, -9.09108 )
+rotation = 0.785397
+shape = SubResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 visible = false
