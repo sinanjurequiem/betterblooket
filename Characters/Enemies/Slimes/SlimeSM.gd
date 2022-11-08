@@ -31,11 +31,14 @@ func _state_logic(_delta: float) -> void:
 		set_state(states.chase)
 	elif state == states.dead:
 		animation_player.play("death")
-		yield(get_tree().create_timer(1), "timeout")
+		yield(get_tree().create_timer(0.8), "timeout")
 		queue_free()
 
 func _get_transition(delta):
-	return null
+	match state:
+		states.hurt:
+			if not animation_player.is_playing():
+				return states.chase
 
 func _enter_state(new_state, old_state):
 	match new_state:
@@ -45,6 +48,9 @@ func _enter_state(new_state, old_state):
 		states.idle:
 			if not animation_player.is_playing():
 				animation_player.play("idle")
+		states.hurt:
+			if not animation_player.is_playing():
+				animation_player.play("hurt")
 
 func _on_PlayerDetected(body):
 	if body.name == "Player" and state == states.idle:
