@@ -11,6 +11,7 @@ export var max_speed:= 100
 onready var state_machine = get_node("StateMachine")
 
 onready var animated_sprite := $"AnimatedSprite"
+onready var animation_player := $"AnimationPlayer"
 
 
 var direction := Vector2.ZERO
@@ -19,6 +20,10 @@ var velocity := Vector2.ZERO
 func _physics_process(_delta: float) -> void:
 	velocity = move_and_slide(velocity)
 	velocity = lerp(velocity, Vector2.ZERO, friction)
+	if hp <= 0:
+		state_machine.set_state(state_machine.states.dead)
+		yield(get_tree().create_timer(1),"timeout")
+		queue_free()
 
 
 func move() -> void:

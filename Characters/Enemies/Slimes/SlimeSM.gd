@@ -6,6 +6,7 @@ func _init() -> void:
 	_add_state("attack")
 	_add_state("alert")
 	_add_state("hurt")
+	_add_state("dead")
 
 func _ready() -> void:
 	set_state(states.idle)
@@ -24,6 +25,14 @@ func _state_logic(_delta: float) -> void:
 	elif state == states.idle:
 		if not animation_player.is_playing():
 			animation_player.play("idle")
+	elif state == states.hurt:
+		animation_player.play("hurt")
+		yield(get_tree().create_timer(0.25), "timeout")
+		set_state(states.chase)
+	elif state == states.dead:
+		animation_player.play("death")
+		yield(get_tree().create_timer(1), "timeout")
+		queue_free()
 
 func _get_transition(delta):
 	return null
