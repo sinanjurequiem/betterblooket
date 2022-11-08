@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Textures/Misc/Logo.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/MainScreen.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="logo" type="Sprite" parent="."]
+position = Vector2( 150, 40 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 160, 40 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 227.0
+margin_top = 111.0
+margin_right = 389.0
+margin_bottom = 145.0
+text = "play lol"
+
+[connection signal="pressed" from="Button" to="." method="_on_StartButton_pressed"]

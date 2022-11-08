@@ -70,6 +70,9 @@ _global_script_class_icons={
 
 config/name="betterblooket"
 run/main_scene="res://testmain.tscn"
+boot_splash/image="res://Textures/Misc/Rektagon Logo.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0, 0.0666667, 0.509804, 1 )
 config/icon="res://icon.png"
 
 [display]
