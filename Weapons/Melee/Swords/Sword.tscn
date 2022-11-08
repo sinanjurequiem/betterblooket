@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Textures/Weapons/BaseSword.png" type="Texture" id=1]
-[ext_resource path="res://Helper Scripts/StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://Helper Scripts/StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Weapons/Melee/Swords/Sword.gd" type="Script" id=2]
 [ext_resource path="res://Textures (placeholder)/effects (new)/slash_effect_anim_spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Weapons/BaseSword.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
@@ -206,13 +207,14 @@ tracks/3/keys = {
 }
 
 [node name="Weapon" type="Node2D" groups=["Melee", "Weapon"]]
+script = ExtResource( 2 )
 
 [node name="Pivot Point" type="Node2D" parent="."]
 
 [node name="Sword" type="Sprite" parent="Pivot Point"]
 position = Vector2( 7, -10 )
 rotation = -2.35619
-texture = ExtResource( 1 )
+texture = ExtResource( 4 )
 offset = Vector2( 6, -5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -227,4 +229,4 @@ anims/slashdown = SubResource( 2 )
 anims/slashup = SubResource( 7 )
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 2 )
+script = ExtResource( 1 )

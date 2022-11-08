@@ -16,11 +16,12 @@ func _process(delta):
 	elif mouse_direction.x < 0 and not animated_sprite.flip_h:
 		animated_sprite.flip_h = true
 	
-	weapon.rotation = mouse_direction.angle()
-	if weapon.scale.y == 1 and mouse_direction.x < 0:
-		weapon.scale.y = -1
-	elif weapon.scale.y == -1 and mouse_direction.x > 0:
-		weapon.scale.y = 1
+	if not weapon_animation_player.is_playing():
+		weapon.rotation = mouse_direction.angle()
+		if weapon.scale.y == 1 and mouse_direction.x < 0:
+			weapon.scale.y = -1
+		elif weapon.scale.y == -1 and mouse_direction.x > 0:
+			weapon.scale.y = 1
 	
 	get_input()
 
@@ -34,15 +35,6 @@ func get_input():
 		direction+= Vector2.RIGHT
 	if Input.is_action_pressed("ui_left"):
 		direction+= Vector2.LEFT
-	if Input.is_action_pressed("ui_attack_main") and not weapon_animation_player.is_playing():
-		#emit_signal("main_attack")
-		if weapon_up:
-			weapon_animation_player.play("slashdown")
-			weapon_up = false
-			print("slashdown")
-		elif not weapon_up:
-			weapon_animation_player.play("slashup")
-			weapon_up = true
-			print("slashup")
+
 
 

@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Weapon",
 "class": "SlashingWeapon",
 "language": "GDScript",
-"path": "res://Weapons/default_slash.gd"
+"path": "res://Weapons/Melee/default_slash.gd"
 }, {
 "base": "Weapon",
 "class": "StabbingWeapon",
@@ -59,7 +59,7 @@ _global_script_class_icons={
 "Character": "res://Textures (placeholder)/heroes/knight/knight_idle_anim_f0.png",
 "Enemy": "res://Textures (placeholder)/enemies/slime/slime_idle_anim_f0.png",
 "Firearm": "",
-"SlashingWeapon": "",
+"SlashingWeapon": "res://Textures/Weapons/BaseSword.png",
 "StabbingWeapon": "",
 "StateMachine": "",
 "ThrowingWeapon": "",

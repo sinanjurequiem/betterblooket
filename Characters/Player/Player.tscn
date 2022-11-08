@@ -5,7 +5,7 @@
 [ext_resource path="res://Textures (placeholder)/heroes/knight/knight_idle_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=4]
 [ext_resource path="res://Characters/Player/PlayerSM.gd" type="Script" id=5]
-[ext_resource path="res://Weapons/Melee/Sword.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Weapons/Melee/Swords/Sword.tscn" type="PackedScene" id=6]
 
 [sub_resource type="AtlasTexture" id=26]
 atlas = ExtResource( 3 )
