@@ -5,7 +5,7 @@ var path: PoolVector2Array
 
 export var speed := 1
 
-onready var animated_sprite := $"AnimatedSprite"
+
 onready var navigation: Navigation2D = get_tree().current_scene.get_node("Navigation2D")
 onready var player: KinematicBody2D = get_tree().current_scene.get_node("Player")
 

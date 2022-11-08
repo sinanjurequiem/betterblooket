@@ -15,4 +15,9 @@ func _ready() -> void:
 	assert(collision_shape != null)
 
 func _on_body_entered(body: PhysicsBody2D) -> void:
-	body.take_damage(damage, knockback_direction, knockback)
+	print(body)
+	if body is KinematicBody2D:
+		body.take_damage(damage, knockback_direction, knockback)
+		print(body)
+	else:
+		pass

@@ -10,7 +10,7 @@ export var max_speed:= 100
 
 onready var state_machine = get_node("StateMachine")
 
-#onready var animated_sprite := $"AnimatedSprite"
+onready var animated_sprite := $"AnimatedSprite"
 
 
 var direction := Vector2.ZERO
@@ -30,4 +30,9 @@ func take_damage(damage: int, direction: Vector2, force: int) -> void:
 	hp -= damage
 	state_machine.set_state(state_machine.states.hurt)
 	velocity += direction * force
+	flash()
 	
+func flash() -> void:
+	animated_sprite.material.set_shader_param("flash_modifier", 1)
+	yield(get_tree().create_timer(0.2), "timeout")
+	animated_sprite.material.set_shader_param("flash_modifier", 0)

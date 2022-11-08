@@ -5,6 +5,7 @@ func _init() -> void:
 	_add_state("chase")
 	_add_state("attack")
 	_add_state("alert")
+	_add_state("hurt")
 
 func _ready() -> void:
 	set_state(states.idle)

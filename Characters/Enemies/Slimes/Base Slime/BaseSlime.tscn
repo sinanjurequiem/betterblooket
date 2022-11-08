@@ -1,10 +1,16 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Characters/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Enemies/Slimes/SlimeSM.gd" type="Script" id=2]
 [ext_resource path="res://Textures (placeholder)/enemies/slime/slime_run_spritesheeet.png" type="Texture" id=3]
 [ext_resource path="res://Textures (placeholder)/enemies/slime/slime_idle_spritesheet.png" type="Texture" id=4]
 [ext_resource path="res://Textures/Misc/AlertIcon.png" type="Texture" id=5]
+[ext_resource path="res://Shaders/damage.tres" type="Shader" id=6]
+
+[sub_resource type="ShaderMaterial" id=18]
+shader = ExtResource( 6 )
+shader_param/flash_color = Color( 1, 0, 0, 1 )
+shader_param/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -88,6 +94,9 @@ tracks/0/keys = {
 "values": [ true, false, false ]
 }
 
+[sub_resource type="Animation" id=19]
+resource_name = "hurt"
+
 [sub_resource type="Animation" id=15]
 resource_name = "run"
 length = 0.5
@@ -124,16 +133,19 @@ radius = 161.078
 collision_mask = 5
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+material = SubResource( 18 )
 frames = SubResource( 7 )
 animation = "run"
 
 [node name="CollisionShape2D" parent="." index="1"]
+visible = false
 position = Vector2( 0, 1 )
 rotation = 1.5708
 shape = SubResource( 14 )
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/alert = SubResource( 17 )
+anims/hurt = SubResource( 19 )
 anims/run = SubResource( 15 )
 
 [node name="StateMachine" parent="." index="3"]
@@ -141,6 +153,9 @@ script = ExtResource( 2 )
 
 [node name="PathTimer" parent="." index="4"]
 wait_time = 0.25
+
+[node name="PlayerDetection" parent="." index="5"]
+visible = false
 
 [node name="CollisionShape2D" parent="PlayerDetection" index="0"]
 shape = SubResource( 16 )

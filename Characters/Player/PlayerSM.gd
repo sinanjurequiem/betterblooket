@@ -3,6 +3,7 @@ extends StateMachine
 func _init():
 	_add_state("idle")
 	_add_state("run")
+	_add_state("hurt")
 
 func _ready():
 	set_state(states.idle)

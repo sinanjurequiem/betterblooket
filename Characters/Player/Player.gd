@@ -1,6 +1,6 @@
 extends Character
 
-onready var animated_sprite = $"AnimatedSprite"
+
 onready var weapon = $"Weapon"
 onready var weapon_hitbox = $"Weapon/Pivot Point/Sprite/Hitbox"
 onready var weapon_animation_player = weapon.get_node("AnimationPlayer") #fix this later to work with other weapons

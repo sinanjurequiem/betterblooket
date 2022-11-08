@@ -114,7 +114,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -267,6 +267,7 @@ script = ExtResource( 5 )
 position = Vector2( 23.2318, -9.09108 )
 rotation = 0.785397
 shape = SubResource( 8 )
+disabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 visible = false
