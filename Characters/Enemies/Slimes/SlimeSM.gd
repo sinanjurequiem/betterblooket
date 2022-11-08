@@ -30,9 +30,11 @@ func _get_transition(delta):
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.chase:
-			animation_player.play("run")
+			if not animation_player.is_playing():
+				animation_player.play("run")
 		states.idle:
-			animation_player.play("idle")
+			if not animation_player.is_playing():
+				animation_player.play("idle")
 
 func _on_PlayerDetected(body):
 	if body.name == "Player" and state == states.idle:

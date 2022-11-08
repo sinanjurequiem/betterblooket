@@ -71,3 +71,9 @@ script = ExtResource( 3 )
 [node name="BaseSlime" parent="." instance=ExtResource( 4 )]
 position = Vector2( 444, 82 )
 max_speed = 75
+
+[node name="BaseSlime2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 19, 73 )
+
+[node name="BaseSlime3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 403, 272 )

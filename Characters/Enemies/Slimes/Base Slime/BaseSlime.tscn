@@ -68,8 +68,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=14]
-radius = 6.0
-height = 4.0
+radius = 5.0
+height = 2.0
 
 [sub_resource type="Animation" id=17]
 resource_name = "alert"
