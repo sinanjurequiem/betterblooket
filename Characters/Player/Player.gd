@@ -11,6 +11,9 @@ var weapon_up:bool = true #placeholder
 
 signal main_attack
 
+func _ready():
+	connect("main_attack", get_node("Weapon"), "_attack")
+
 func _process(delta):
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	
@@ -42,6 +45,10 @@ func get_input():
 			weapon.scale.y = -1
 		elif weapon.scale.y == -1 and mouse_direction.x > 0:
 			weapon.scale.y = 1
+	
+	if Input.is_action_pressed("ui_attack_main"):
+		emit_signal("main_attack")
+		print("signal sent")
 
 
 
