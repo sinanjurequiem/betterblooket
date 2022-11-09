@@ -144,6 +144,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("PhysicsHitBox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=51]
 resource_name = "death"
@@ -211,7 +223,19 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=52]
 resource_name = "hurt"
 length = 0.3
-step = 0.01
+step = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PhysicsHitBox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.003, 0.008, 0.298 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"

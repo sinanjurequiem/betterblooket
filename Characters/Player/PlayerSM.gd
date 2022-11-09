@@ -6,6 +6,7 @@ func _init():
 	_add_state("hurt")
 	_add_state("dead")
 
+
 func _ready():
 	set_state(states.idle)
 
@@ -35,10 +36,11 @@ func _enter_state(new_state, old_state):
 			animation_player.play("run")
 		states.hurt:
 			animation_player.play("hurt")
+			yield(get_tree().create_timer(0.3), "timeout")
 		states.dead:
 			animation_player.play("death")
 			yield(get_tree().create_timer(0.8), "timeout")
-			queue_free()
+			parent.queue_free()
 
 
 			

@@ -8,11 +8,11 @@ onready var weapon_animation_player = weapon.get_node("AnimationPlayer") #fix th
 var weapon_up:bool = true #placeholder
 
 
-
 signal main_attack
 
 func _ready():
 	connect("main_attack", get_node("Weapon"), "_attack")
+	set_hp(10)
 
 func _process(delta):
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
@@ -48,7 +48,7 @@ func get_input():
 	
 	if Input.is_action_pressed("ui_attack_main"):
 		emit_signal("main_attack")
-		print("signal sent")
+
 
 
 

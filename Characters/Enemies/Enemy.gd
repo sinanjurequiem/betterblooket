@@ -8,6 +8,7 @@ export var speed := 1
 
 onready var navigation: Navigation2D = get_tree().current_scene.get_node("Navigation2D")
 onready var player: KinematicBody2D = get_tree().current_scene.get_node("Player")
+onready var path_timer: Timer = $"PathTimer"
 
 func chase() -> void:
 	if path:
@@ -27,7 +28,11 @@ func chase() -> void:
 			animated_sprite.flip_h = true
 
 func _on_PathTimer_timeout() -> void:
-	path = navigation.get_simple_path(global_position, player.position) #deprecated soon
-
+	if is_instance_valid(player):
+		path = navigation.get_simple_path(global_position, player.position) #deprecated soon
+	else:
+		path_timer.stop()
+		path = []
+		direction = Vector2(0,0)
 
 

@@ -6,6 +6,7 @@ class_name Weapon
 export var damage: int = 1
 export var knockback : int = 300
 var knockback_direction : Vector2 = Vector2.ZERO
+var parent = get_parent()
 
 signal attack
 

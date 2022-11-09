@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Characters/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Enemies/Slimes/SlimeSM.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Shaders/damage.material" type="Material" id=6]
 [ext_resource path="res://Textures (placeholder)/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" type="Texture" id=7]
 [ext_resource path="res://Helper Scripts/hitbox.gd" type="Script" id=8]
+[ext_resource path="res://Characters/Enemies/Slimes/slime.gd" type="Script" id=9]
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 7 )
@@ -240,6 +241,7 @@ radius = 161.078
 
 [node name="BaseSlime" instance=ExtResource( 1 )]
 collision_mask = 5
+script = ExtResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 material = ExtResource( 6 )
