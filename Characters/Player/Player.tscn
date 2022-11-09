@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Textures/Characters/Player/player_run.png" type="Texture" id=2]
@@ -6,6 +6,24 @@
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=4]
 [ext_resource path="res://Characters/Player/PlayerSM.gd" type="Script" id=5]
 [ext_resource path="res://Weapons/Melee/Swords/Sword.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Shaders/damage.material" type="Material" id=7]
+[ext_resource path="res://Textures (placeholder)/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" type="Texture" id=8]
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 8 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 8 )
+region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 3 )
@@ -57,6 +75,11 @@ region = Rect2( 80, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=32]
 animations = [ {
+"frames": [ SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
 "loop": true,
 "name": "idle",
@@ -68,8 +91,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=33]
-radius = 4.60977
+[sub_resource type="CircleShape2D" id=46]
+radius = 3.64005
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -97,6 +120,98 @@ tracks/1/keys = {
 "update": 0,
 "values": [ "run" ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:material:shader_param/flash_modifier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=51]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:material:shader_param/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "idle", "death" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimatedSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "hurt"
+length = 0.3
+step = 0.01
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -162,15 +277,17 @@ collision_mask = 5
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+material = ExtResource( 7 )
 frames = SubResource( 32 )
 animation = "run"
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( 0, 3 )
-shape = SubResource( 33 )
+[node name="PhysicsHitBox" parent="." index="1"]
+shape = SubResource( 46 )
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/RESET = SubResource( 1 )
+anims/death = SubResource( 51 )
+anims/hurt = SubResource( 52 )
 anims/idle = SubResource( 2 )
 anims/run = SubResource( 3 )
 

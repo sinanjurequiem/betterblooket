@@ -51,14 +51,13 @@ func _enter_state(new_state, old_state):
 		states.hurt:
 			if not animation_player.is_playing():
 				animation_player.play("hurt")
+		states.alert:
+			if not animation_player.is_playing():
+				animation_player.play("alert")
 
 func _on_PlayerDetected(body):
 	if body.name == "Player" and state == states.idle:
 		set_state(states.alert)
-
-
-
-
 
 func _on_PlayerDetection_body_exited(body):
 	if body.name == "Player" and state == states.chase:

@@ -1,17 +1,13 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Characters/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Enemies/Slimes/SlimeSM.gd" type="Script" id=2]
 [ext_resource path="res://Textures (placeholder)/enemies/slime/slime_run_spritesheeet.png" type="Texture" id=3]
 [ext_resource path="res://Textures (placeholder)/enemies/slime/slime_idle_spritesheet.png" type="Texture" id=4]
 [ext_resource path="res://Textures/Misc/AlertIcon.png" type="Texture" id=5]
-[ext_resource path="res://Shaders/damage.tres" type="Shader" id=6]
+[ext_resource path="res://Shaders/damage.material" type="Material" id=6]
 [ext_resource path="res://Textures (placeholder)/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" type="Texture" id=7]
-
-[sub_resource type="ShaderMaterial" id=18]
-shader = ExtResource( 6 )
-shader_param/flash_color = Color( 1, 0, 0, 1 )
-shader_param/flash_modifier = 0.0
+[ext_resource path="res://Helper Scripts/hitbox.gd" type="Script" id=8]
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 7 )
@@ -95,9 +91,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=14]
-radius = 5.0
-height = 2.0
+[sub_resource type="CapsuleShape2D" id=26]
+radius = 3.0
+height = 5.0
 
 [sub_resource type="Animation" id=17]
 resource_name = "alert"
@@ -166,6 +162,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=19]
 resource_name = "hurt"
@@ -182,6 +190,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -213,6 +233,8 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="CircleShape2D" id=25]
+
 [sub_resource type="CircleShape2D" id=16]
 radius = 161.078
 
@@ -220,15 +242,14 @@ radius = 161.078
 collision_mask = 5
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
-material = SubResource( 18 )
+material = ExtResource( 6 )
 frames = SubResource( 7 )
 animation = "idle"
 
-[node name="CollisionShape2D" parent="." index="1"]
-visible = false
-position = Vector2( 0, 1 )
+[node name="PhysicsHitBox" parent="." index="1"]
+position = Vector2( 0, 2 )
 rotation = 1.5708
-shape = SubResource( 14 )
+shape = SubResource( 26 )
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/alert = SubResource( 17 )
@@ -242,16 +263,26 @@ script = ExtResource( 2 )
 [node name="PathTimer" parent="." index="4"]
 wait_time = 0.25
 
-[node name="PlayerDetection" parent="." index="5"]
-visible = false
-
-[node name="CollisionShape2D" parent="PlayerDetection" index="0"]
-shape = SubResource( 16 )
-
-[node name="AlertIcon" type="Sprite" parent="." index="6"]
+[node name="AlertIcon" type="Sprite" parent="." index="5"]
 visible = false
 position = Vector2( 0, -14 )
 texture = ExtResource( 5 )
+
+[node name="Hitbox" type="Area2D" parent="." index="6"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 1 )
+shape = SubResource( 25 )
+
+[node name="PlayerDetection" parent="." index="7"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" parent="PlayerDetection" index="0"]
+shape = SubResource( 16 )
 
 [connection signal="body_entered" from="PlayerDetection" to="StateMachine" method="_on_PlayerDetected"]
 [connection signal="body_exited" from="PlayerDetection" to="StateMachine" method="_on_PlayerDetection_body_exited"]
