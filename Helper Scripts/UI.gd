@@ -5,7 +5,7 @@ const MAX_HEALTH: int = 100
 
 var max_hp: int = 4
 
-onready var player: KinematicBody2D = get_parent().get_node("Player")
+onready var player: KinematicBody2D = get_parent()
 onready var health_bar = $HealthBar
 onready var health_bar_tween = $HealthBar/Tween
 onready var health_bar_label = $HealthBar/Label

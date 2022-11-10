@@ -65,6 +65,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [ "idle" ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "idle"
@@ -85,7 +97,7 @@ tracks/0/keys = {
 
 [node name="Enemy" instance=ExtResource( 1 )]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 5
 script = ExtResource( 3 )
 speed = 1
 
@@ -99,5 +111,7 @@ autostart = true
 [node name="PlayerDetection" type="Area2D" parent="." index="4"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" index="0"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="5"]
 
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]

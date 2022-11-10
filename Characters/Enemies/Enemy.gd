@@ -6,9 +6,10 @@ var path: PoolVector2Array
 export var speed := 1
 
 
-onready var navigation: Navigation2D = get_tree().current_scene.get_node("Navigation2D")
+onready var navigation: Navigation2D = get_parent()
 onready var player: KinematicBody2D = get_tree().current_scene.get_node("Player")
 onready var path_timer: Timer = $"PathTimer"
+onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 func chase() -> void:
 	if path:

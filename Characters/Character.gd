@@ -16,9 +16,9 @@ onready var animation_player := $"AnimationPlayer"
 
 
 var direction := Vector2.ZERO
-var velocity := Vector2.ZERO
+var velocity = Vector2.ZERO
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	velocity = move_and_slide(velocity)
 	velocity = lerp(velocity, Vector2.ZERO, friction)
 
@@ -50,7 +50,6 @@ func flash() -> void:
 func hp_changed(new_hp) -> void:
 	hp = new_hp
 	emit_signal("hp_changed", new_hp)
-	print("damaged signal sent")
 
 
 func set_hp(new_hp:int)-> void:

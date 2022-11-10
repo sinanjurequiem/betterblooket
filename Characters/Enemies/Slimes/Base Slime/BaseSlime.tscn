@@ -240,8 +240,8 @@ tracks/1/keys = {
 radius = 161.078
 
 [node name="BaseSlime" instance=ExtResource( 1 )]
-collision_mask = 5
 script = ExtResource( 9 )
+max_speed = 50
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 material = ExtResource( 6 )
