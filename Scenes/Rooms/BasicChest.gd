@@ -5,5 +5,6 @@ onready var animation_player = $AnimationPlayer
 
 func open() -> void:
 	animation_player.play("open")
+	print("command_recieved")
 
 # add spawn stuff later

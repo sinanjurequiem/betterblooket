@@ -13,6 +13,7 @@ onready var entrance: Node2D = $Entrance
 onready var door_container: Node2D = $Doors
 onready var enemy_positions_container: Node2D = $EnemyPositions
 onready var player_detector: Area2D = $PlayerDetector
+onready var chest_container: Node2D = $Chests
 
 func _ready() -> void:
 	num_enemies = enemy_positions_container.get_child_count()
@@ -21,6 +22,10 @@ func open_doors() -> void:
 	for door in door_container.get_children():
 		door.open()
 		print("door command recieved")
+
+func open_chests() -> void:
+	for chest in chest_container.get_children():
+		chest.open()
 
 func _close_entrance() -> void:
 	for entry_position in entrance.get_children():
@@ -46,7 +51,7 @@ func _on_enemy_killed() -> void:
 	yield(get_tree().create_timer(0.01), "timeout")
 	if num_enemies == 0:
 		open_doors()
-		print("door command sent")
+		open_chests()
 
 
 func _on_PlayerDetected(body: KinematicBody2D):

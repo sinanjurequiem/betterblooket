@@ -4,6 +4,8 @@ extends Character
 onready var weapon = $"Weapon"
 onready var weapon_hitbox = $"Weapon/Pivot Point/Sprite/Hitbox"
 onready var weapon_animation_player = weapon.get_node("AnimationPlayer") #fix this later to work with other weapons
+onready var ui = $UI
+
 
 var weapon_up:bool = true #placeholder
 
@@ -50,5 +52,9 @@ func get_input():
 		emit_signal("main_attack")
 
 
-
+func _on_question_answerable() -> void:
+#	var question: PackedScene = preload("res://QA/quiz_screen.tscn")
+#	var question_instance = question.instance()
+#	ui.add_child(question_instance)
+	print("question_answerable")
 
