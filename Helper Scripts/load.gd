@@ -4,6 +4,7 @@ onready var loading_scene = preload("res://Scenes/Misc/loading_screen.tscn")
 
 func _load_scene(current_scene, next_scene) -> void:
 	var loading_scene_instance = loading_scene.instance()
+
 	get_tree().get_root().call_deferred("add_child",loading_scene_instance)
 	
 	var loader = ResourceLoader.load_interactive(next_scene)
