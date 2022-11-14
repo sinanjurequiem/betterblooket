@@ -1,13 +1,16 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Misc/loading_screen.gd" type="Script" id=1]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0784314, 0.0901961, 0.12549, 1 )
+color = Color( 0.105882, 0.0509804, 0.211765, 1 )
 
 [node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
 anchor_right = 1.0
@@ -15,15 +18,31 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
 margin_left = 239.0
-margin_top = 125.0
+margin_top = 134.0
 margin_right = 240.0
-margin_bottom = 144.0
-
-[node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
-margin_right = 1.0
-margin_bottom = 14.0
+margin_bottom = 135.0
 
 [node name="TextureProgress" type="TextureProgress" parent="ColorRect/CenterContainer/VBoxContainer"]
-margin_top = 18.0
 margin_right = 1.0
-margin_bottom = 19.0
+margin_bottom = 1.0
+
+[node name="Label" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = -7.0
+margin_right = 240.0
+margin_bottom = 7.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "subscribe to rektahon"
+align = 1
+autowrap = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
