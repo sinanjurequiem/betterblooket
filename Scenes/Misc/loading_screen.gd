@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 onready var label = $ColorRect/Label
 onready var texture_progress = $ColorRect/CenterContainer/VBoxContainer/TextureProgress
@@ -42,3 +42,6 @@ func _ready() -> void:
 func _on_Timer_timeout():
 	label.text = tips[int(rng.randf_range(0,20))]
 	$Timer.start()
+
+
+

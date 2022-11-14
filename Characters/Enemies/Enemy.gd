@@ -5,11 +5,15 @@ var path: PoolVector2Array
 
 export var speed := 1
 
-
 onready var navigation: Navigation2D = get_parent()
 onready var player: KinematicBody2D = get_tree().current_scene.get_node("Player")
 onready var path_timer: Timer = $"PathTimer"
 onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+
+func _ready() -> void:
+	if is_instance_valid(player):
+		print("valid instance")
+	var __ = connect("tree_exited", get_parent(), "_on_enemy_killed")
 
 func chase() -> void:
 	if path:

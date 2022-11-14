@@ -81,11 +81,15 @@ _global_script_class_icons={
 [application]
 
 config/name="The Wastelands"
-run/main_scene="res://testmain.tscn"
+run/main_scene="res://Scenes/MainScreen.tscn"
 boot_splash/image="res://Textures/Misc/Rektagon Logo.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0, 0.0666667, 0.509804, 1 )
 config/icon="res://Textures/Weapons/BaseSword.png"
+
+[autoload]
+
+Load="*res://Helper Scripts/load.gd"
 
 [display]
 
