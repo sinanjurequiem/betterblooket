@@ -11,4 +11,4 @@ func _attack() -> void:
 		elif not weapon_up:
 			animation_player.play("slashup")
 			weapon_up = true
-			print("slashup")
+

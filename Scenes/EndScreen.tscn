@@ -1,6 +1,6 @@
 [gd_scene format=2]
 
-[node name="Control" type="Node2D"]
+[node name="Control" type="CanvasLayer"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
