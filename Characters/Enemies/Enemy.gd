@@ -12,6 +12,15 @@ onready var navigation: Navigation2D = get_parent()
 onready var player: KinematicBody2D = get_tree().current_scene.get_node("Player")
 onready var path_timer: Timer = $"PathTimer"
 
+#pathfinding shit
+var interest: Array = []
+var danger: Array = []
+var ray_dir: Array = []
+
+var chosen_dir: Vector2 = Vector2(0,0)
+
+export var num_rays:int = 32
+
 
 func _ready() -> void:
 	if is_instance_valid(player):
@@ -42,5 +51,6 @@ func _on_PathTimer_timeout() -> void:
 		path_timer.stop()
 		path = []
 		direction = Vector2(0,0)
+
 
 

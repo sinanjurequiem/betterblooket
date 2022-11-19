@@ -19,7 +19,7 @@ var direction := Vector2.ZERO
 var velocity = Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
-	velocity = move_and_slide(velocity)
+	move_and_collide(velocity*delta)
 	velocity = lerp(velocity, Vector2.ZERO, friction)
 
 
