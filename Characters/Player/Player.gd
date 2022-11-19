@@ -12,6 +12,10 @@ var weapon_up:bool = true #placeholder
 
 signal main_attack
 
+func _physics_process(delta: float) -> void:
+	move_and_collide(velocity * delta)
+	velocity = lerp(velocity, Vector2.ZERO, friction)
+
 func _ready():
 	connect("main_attack", get_node("Weapon"), "_attack")
 	connect("hp_changed", get_node("UI"), "on_Player_hp_changed")

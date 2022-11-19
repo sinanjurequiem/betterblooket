@@ -18,11 +18,11 @@ onready var animation_player := $"AnimationPlayer"
 var direction := Vector2.ZERO
 var velocity := Vector2.ZERO
 
-func _physics_process(delta: float) -> void:
-	move_and_collide(velocity*delta)
-	velocity = lerp(velocity, Vector2.ZERO, friction)
-
-
+# Commented out since each child class of Character
+# currently implements its own _physics_process
+# func _physics_process(delta: float) -> void:
+#	move_and_collide(velocity*delta)
+#	velocity = lerp(velocity, Vector2.ZERO, friction)
 
 func move() -> void:
 	direction = direction.normalized()
