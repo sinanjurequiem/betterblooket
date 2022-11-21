@@ -101,6 +101,8 @@ collision_mask = 5
 script = ExtResource( 3 )
 speed = 1
 path_to_player = NodePath("")
+steer_force = 0.1
+look_ahead = 100
 num_rays = 32
 
 [node name="AnimationPlayer" parent="." index="1"]
@@ -117,6 +119,7 @@ autostart = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="5"]
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="6"]
+visible = false
 polygon = PoolVector2Array( -5, -4, 2, -5, 6, -1, 7, 2, 0, 8, -5, 6, -7, 4, -8, 0 )
 
 [connection signal="timeout" from="PathTimer" to="." method="_on_PathTimer_timeout"]

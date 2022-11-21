@@ -397,6 +397,10 @@ format = 1
 
 [node name="EnemyPositions" type="Node2D" parent="."]
 
+[node name="EnemyPositions2" type="Node2D" parent="."]
+
+[node name="EnemyPositions3" type="Node2D" parent="."]
+
 [node name="Chests" type="Node2D" parent="."]
 
 [node name="PlayerDetector" type="Area2D" parent="."]

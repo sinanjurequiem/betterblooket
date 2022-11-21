@@ -34,6 +34,18 @@ position = Vector2( 264, 160 )
 [node name="Position2D2" type="Position2D" parent="EnemyPositions" index="1"]
 position = Vector2( 208, 160 )
 
+[node name="Position2D3" type="Position2D" parent="EnemyPositions" index="2"]
+position = Vector2( 248, 112 )
+
+[node name="Position2D4" type="Position2D" parent="EnemyPositions" index="3"]
+position = Vector2( 144, 136 )
+
+[node name="Position2D5" type="Position2D" parent="EnemyPositions" index="4"]
+position = Vector2( 40, 56 )
+
+[node name="Position2D6" type="Position2D" parent="EnemyPositions" index="5"]
+position = Vector2( 104, 168 )
+
 [node name="Chest" parent="Chests" index="0" instance=ExtResource( 4 )]
 position = Vector2( 184, 88 )
 
