@@ -1,0 +1,17 @@
+res://testmain.tscn
+res://Scenes/Rooms/Room0.tscn
+res://Characters/Character.gd
+res://Scenes/Rooms/DefaultRoom.gd
+res://Node2d.gd
+res://Characters/Enemies/Enemy.gd
+res://Helper Scripts/StateMachine.gd
+res://Characters/Enemies/Slimes/SlimeSM.gd
+res://Helper Scripts/hitbox.gd
+res://Characters/Player/PlayerSM.gd
+res://Weapons/Melee/Swords/Sword.tscn
+res://Characters/Player/Player.tscn
+res://Shaders/damage.material
+res://Weapons/Melee/Sword.tscn
+res://Weapons/Melee/default_slash.gd
+res://Weapons/Melee/default_slash.tscn
+res://Helper Scripts/scene_center_thingy.gd
